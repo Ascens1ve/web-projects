@@ -1,0 +1,197 @@
+@line-color: black;
+@search-bg: #D9D9D9;
+@border-radius: 10px; 
+@icon-color: #48a29f;
+@text-weight: normal;
+@fontSizeTitle: 36px;
+@fontWeightTitle: bold;
+@fa-css-prefix: fa;
+
+.titles-font {
+    font-family: "Comfortaa", sans-serif;
+}
+
+.page {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: @search-bg;
+  border-radius: @border-radius;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 5px auto;
+
+  .search-icon {
+    color: @icon-color;
+    margin-right: 8px;
+    font-size: 1rem;
+  }
+
+  .search-input {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1rem;
+    width: 100%;
+    color: @line-color;
+  }
+}
+
+.people-title {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    .titles-font
+}
+
+.main {
+    width: 100%;
+    margin-left: 10px;
+    border-left: 1px solid @line-color;
+    border-right: 1px solid @line-color;
+    border-top: 1px solid @line-color;
+    border-radius: 5px;
+}
+
+.line-1px {
+    background-color: @line-color;
+    width: 100%;
+    height: 1px;
+}
+
+.person-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    margin: 5px auto;
+}
+
+.person-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.person-avatar {
+    min-width: 180px;
+    min-height: 180px;
+    border-radius: 50%;
+}
+
+.person-ids {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.post-text {
+    margin-left: 7px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: @text-weight;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.person-nickname {
+    margin: 9px 0 0 0;
+    color: #757070;
+    font-size: 24px;
+    font-weight: @text-weight;
+}
+
+.nickname-link {
+    text-decoration: none;
+    color: #757070;
+}
+
+.nickname-link:hover {
+    color: pink;
+}
+
+.nickname {
+    margin-right: 10px;
+}
+
+.person-fullname {
+    margin: 9px 0 0 0;
+    color: @line-color;
+    font-size: 24px;
+    font-weight: @text-weight;
+}
+
+.person-nickname:hover {
+    color: pink;
+}
+
+.person-about {
+    margin: 9px 0 0 0;
+    color: @line-color;
+    font-size: 18px;
+    font-weight: @text-weight;
+}
+
+.person-info__text {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    font-size: 18px;
+    font-weight: @text-weight;
+}
+
+.person-with-line {
+    margin-left: 5px;
+}
+
+.change-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.button-view {
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #FFF;
+    cursor: pointer;
+    width: 200px !important;
+}
+
+.person-flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.ui-button.ui-widget {
+    width: 200px !important;
+}
+
+input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: @text-weight;
+}
+
+.person-text {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.person-mar {
+    margin: 5px;
+}

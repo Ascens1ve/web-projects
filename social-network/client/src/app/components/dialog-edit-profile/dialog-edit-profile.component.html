@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Редактирование профиля</h2>
+<form id="editForm" mat-dialog-content [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <mat-label>Имя</mat-label>
+    <input formControlName="name" matInput>
+    <mat-error [hidden]="!nameError">{{nameError}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Фамилия</mat-label>
+    <input formControlName="surname" matInput>
+    <mat-error [hidden]="!surnameError">{{surnameError}}</mat-error>
+  </mat-form-field>
+
+  <button type="button" mat-raised-button (click)="fileInput.click()" class="form__button">
+    {{form.get('avatar')?.value?.name ?? 'Загрузить аватарку'}}
+  </button>
+  <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+  <mat-error [hidden]="!avatarError">{{avatarError}}</mat-error>
+  <button type="button" (click)="removeImage(fileInput)" mat-raised-button [disabled]="!form.get('avatar')?.value">Удалить</button>
+
+  <button type="button" (click)="removeInitialAvatar()"  mat-raised-button [disabled]="!currentAvatar">Удалить текущую аватарку</button>
+
+  <mat-form-field>
+    <mat-label>Обо мне:</mat-label>
+    <textarea formControlName="about" matInput></textarea>
+    <mat-error [hidden]="!aboutError">{{aboutError}}</mat-error>
+  </mat-form-field>
+
+</form>
+<div mat-dialog-actions class="form__actions">
+  <button matButton type="submit" form="editForm" mat-dialog-close cdkFocusInitial>Сохранить</button>
+  <button matButton mat-dialog-close>Отменить</button>
+</div>

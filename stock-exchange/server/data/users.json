@@ -1,0 +1,73 @@
+[
+  {
+    "alias": "ascensive",
+    "name": "Тоха",
+    "surname": "Иванов",
+    "password": "12345678"
+  },
+  {
+    "alias": "joker",
+    "name": "Сергей",
+    "surname": "Иванов",
+    "password": "6543210-1"
+  },
+  {
+    "name": "143",
+    "surname": "23423",
+    "alias": "234234",
+    "password": "23423423243"
+  },
+  {
+    "name": "2121231",
+    "surname": "422341324241",
+    "alias": "joker123",
+    "password": "$2b$10$SetSIaBvDFUM/yRXxtdeoOsedcdpe9Ilx3rAQKUPaH/8.16lAs.rm"
+  },
+  {
+    "name": "Илья",
+    "surname": "432234",
+    "alias": "joker12",
+    "password": "$2b$10$sngIbYYEBvG.7MU8I2DRyuIXqdY1ikAHswlViYBEzc2lWPsToyPGq",
+    "role": "admin"
+  },
+  {
+    "name": "joker",
+    "surname": "brazini",
+    "alias": "1234",
+    "password": "$2b$10$.WfC4j/lId6OahZGnjxMnurLpe60Y9cvHRmMy1S25Q/jbzzjoCexW",
+    "role": "broker",
+    "baseMoney": 12
+  },
+  {
+    "name": "joker",
+    "surname": "brazini",
+    "alias": "1234",
+    "password": "$2b$10$Rk28l9RnWwoK5.xZvWxsteVjG8M/1LxIj0Hlu4JqdeLFESAdlAEJK",
+    "role": "broker",
+    "baseMoney": 12
+  },
+  {
+    "name": "joker",
+    "surname": "brazini",
+    "alias": "12345",
+    "password": "$2b$10$NXLQVHAFBxeHyacUACFBveu7VoLp2HZeVoCXwrqfFG3Y1eOh6jE7m",
+    "role": "broker",
+    "baseMoney": 12
+  },
+  {
+    "name": "joker",
+    "surname": "brazini",
+    "alias": "CLownessa",
+    "password": "$2b$10$gw8Fhtj1wvj7hWpq0Jt6m.geTOVwY3ZwjVFc1/79Q77BgqBC3qvvS",
+    "role": "broker",
+    "baseMoney": 12
+  },
+  {
+    "name": "maxim",
+    "surname": "maxim",
+    "alias": "maxim",
+    "password": "$2b$10$4RS4zb59LTpt.L5blObZ.OCzh8PZMTHEBLyPx0kQeq5naSdiei4uu",
+    "role": "broker",
+    "baseMoney": 15900
+  }
+]

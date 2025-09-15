@@ -1,0 +1,30 @@
+<nav class="navbar">
+    <div class="navbar__links">
+        @for (link of links; track link) {
+            @if (link[0] === 'friends' || link[0] === 'profile') {
+                <a mat-flat-button
+                   [routerLink]="[link[0], nickname()]"
+                   routerLinkActive="active"
+                   [color]="isActive(link[0]) ? 'primary' : undefined">
+                   {{ link[1] }}
+                </a>
+            } @else {
+                <a mat-flat-button
+                  [routerLink]="link[0]"
+                  routerLinkActive="active"
+                  [color]="isActive(link[0]) ? 'primary' : undefined">
+                  {{ link[1] }}
+                </a>
+            }
+        }
+        @if (role() === 'moderator') {
+          <a mat-flat-button [href]="adminUrl" data-admin>Админ-панель</a>
+        }
+    </div>
+    @if (nickname()) {
+        <a mat-flat-button color="warn" (click)="logout()">Выйти</a>
+    } @else {
+        <a mat-flat-button color="primary" (click)="toLogin()">Войти</a>
+    }
+</nav>
+<div class="line"></div>

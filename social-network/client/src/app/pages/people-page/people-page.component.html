@@ -1,0 +1,28 @@
+<div class="people">
+    <h1>Список пользователей</h1>
+    <mat-form-field>
+        <input matInput type="search" placeholder="Иванов Иван" #searchInput (keydown.enter)="findUsers(searchInput.value)">
+    </mat-form-field>
+</div>
+@for (user of filteredUsers; track { user: user} ) {
+    <div class="friend">
+        <div class="friend__main-info">
+            <img [src]="user.avatar ? (user.avatar | imgUrl) : './assets/images/webp/invalid-avatar.webp'" alt="Аватар" class="friend__avatar">
+            <h2 class="friend__id">{{user.name}} {{user.surname}} | <strong>{{user.nickname}}</strong></h2>
+        </div>
+        @if (!(user.nickname === getCurrentNickname())) {
+            @if (user.friendRelation === "active") {
+                <button class="friend__button" mat-flat-button color="warn" (click)="deleteFriend(user.id)">Удалить</button>
+            } @else if (user.friendRelation === "incoming") {
+                <button class="friend__button" mat-flat-button color="primary" (click)="acceptFriend(user.id)">Принять</button>
+                <button class="friend__button" mat-flat-button color="accent" (click)="declineFriend(user.id, 'incoming')">Отклонить</button>
+            } @else if (user.friendRelation === "outgoing") {
+                <button class="friend__button" mat-flat-button color="accent" (click)="declineFriend(user.id, 'outgoing')">Отменить</button>
+            } @else {
+                <button class="friend__button" mat-flat-button color="primary" (click)="addFriend(user.id)">Добавить</button>
+            }
+        } @else {
+            <button class="friend__button" mat-flat-button disabled>Это я</button>
+        }
+    </div>
+}

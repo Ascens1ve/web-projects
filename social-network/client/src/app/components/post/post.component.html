@@ -1,0 +1,18 @@
+<div class="post">
+    <div class="post-header">
+        <div class="post-header__person-info">
+            <!--<img [src]="avatar_src" alt="Аватар" class="post-header__avatar" width="45" height="45">-->
+            <h2 class="post-header__info"><span>{{author}}</span> | <span>{{date}}</span></h2>
+        </div>
+        <div class="post-header__likes-info">
+            <img [src]="like_imgs[+likedByMe()]" witdh="28" height="28" alt="Like icon" (click)="putLike(id)">
+            <span>{{likes.length}}</span>
+        </div>
+    </div>
+    @if (image_src) {
+      <div class="post__image-place">
+        <img [src]="(image_src | imgUrl)" alt="Картинка поста" class="post__image">
+      </div>
+    }
+    <p class="post__text">{{text}}</p>
+</div>

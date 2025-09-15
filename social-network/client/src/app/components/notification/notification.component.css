@@ -1,0 +1,61 @@
+.notification {
+    position: absolute;
+    z-index: 1000;
+    top: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    height: min-content;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,1);
+    transition: top 0.3s ease-in-out;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-sizing: border-box;
+    --fs: 16px;
+}
+
+.notification_open {
+    top: 20px;
+}
+
+.notification_success {
+    background-color: rgba(54,209,134,1);
+    border: 1px solid green;
+}
+
+.notification_error {
+    background-color: rgba(201,58,58,1);
+    border: 1px solid red;
+}
+
+.notification_warn {
+    background-color: rgba(238,245,108,1);
+    border: 1px solid yellow;
+}
+
+.notification__text {
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    font-size: var(--fs);
+    font-weight: 500;
+}
+
+.notification__button {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    color: #000000;
+    font-size: var(--fs);
+    font-weight: 500;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}

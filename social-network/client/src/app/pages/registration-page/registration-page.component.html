@@ -1,0 +1,38 @@
+<div class="registration">
+    <form class="registration__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>Никнейм</mat-label>
+            <input type="text" matInput formControlName="nickname">
+            <mat-error [hidden]="!nicknameError">{{nicknameError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Имя</mat-label>
+            <input type="text" matInput formControlName="name">
+            <mat-error [hidden]="!nameError">{{nameError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Фамилия</mat-label>
+            <input type="text" matInput formControlName="surname">
+            <mat-error [hidden]="!surnameError">{{surnameError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Дата рождения</mat-label>
+            <input type="date" matInput formControlName="birthday">
+            <mat-error [hidden]="!birthdayError">{{birthdayError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Почта</mat-label>
+            <input type="text" matInput placeholder="example@gmail.com" formControlName="email">
+            <mat-error [hidden]="!emailError">{{emailError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Пароль</mat-label>
+            <input type="password" matInput formControlName="password">
+            <mat-error [hidden]="!passwordError">{{passwordError}}</mat-error>
+        </mat-form-field>
+        <button mat-flat-button color="primary"
+                type="submit" [disabled]="form.invalid || form.pending || isSubmitting"
+        >Зарегистрироваться</button>
+    </form>
+    <button mat-flat-button (click)="toLogin()">Войти</button>
+</div>

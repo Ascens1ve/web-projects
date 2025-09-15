@@ -1,0 +1,33 @@
+.contained {
+    
+}
+
+.text {
+
+}
+
+
+.outlined {
+    width: 50%;
+    place-items: center;
+    border: 1px solid blue;
+    border-radius: 5px;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: #0f6bff;
+    background: none;
+    text-align: center;
+    text-decoration: none;
+    transition: width 0.5s ease-in-out;
+}
+
+.outlined-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.outlined-wrapper:hover .outlined  {
+    width: 100%;
+}

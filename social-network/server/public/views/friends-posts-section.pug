@@ -1,0 +1,14 @@
+if friends_posts && friends_posts.length
+    each post in friends_posts
+        if post
+            div(class="person-post__header")
+                if post.author
+                    h3(class="person-post__fullname") #{post.author}
+                if post.date
+                    h3(class="person-post__post-date") #{post.date}
+            .line-1px
+            if post.image
+                img(class="post-image" src=`${serverUrl}/${post.image}`)
+            if post.text
+                p(class="post-text") #{post.text}
+            .line-1px

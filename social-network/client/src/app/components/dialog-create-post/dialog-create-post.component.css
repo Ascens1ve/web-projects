@@ -1,0 +1,15 @@
+.form__image-load {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.form__button {
+  display: inline-block;
+  width: 210px;          /* фиксированная ширина */
+  max-width: 100%;       /* чтоб не ломалось в адаптиве */
+  white-space: nowrap;   /* одна строка */
+  overflow: hidden;      /* обрезаем лишнее */
+  text-overflow: ellipsis; /* ставим "..." */
+  text-align: left;      /* чтобы троеточие было в конце, а не по центру */
+}

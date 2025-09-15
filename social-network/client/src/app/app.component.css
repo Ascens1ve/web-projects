@@ -1,0 +1,39 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* чтобы не плодить лишний скролл */
+}
+
+@media only screen and (min-width: 480px) {
+  .page {
+    max-width: 480px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .page {
+    max-width: 768px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .page {
+    max-width: 900px;
+  }
+}
+
+@media only screen and (min-width: 1382px) {
+  .page {
+    max-width: 1200px;
+  }
+}

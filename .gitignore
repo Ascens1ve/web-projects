@@ -6,10 +6,16 @@ coverage/
 **/.env
 **/.env.*
 !**/.env.example
+**/*.key
+**/*.pem
+**/*.crt
+**/ssl/
+**/sslcert/
 
 .DS_Store
 .idea/
 .vscode/
+.angular/
 
 npm-debug.log*
 yarn-error.log*

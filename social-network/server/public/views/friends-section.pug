@@ -1,0 +1,13 @@
+script.
+    window.friendsMap = !{JSON.stringify(friendsMap)};
+    window.serverUrl = "#{serverUrl}";
+    window.friendInit = false;
+
+div(class="friends__categories")
+    h2(id="friends__active" class="friends__header") Активные
+    h2(id="friends__outgoing" class="friends__header") Исходящие
+    h2(id="friends__incoming" class="friends__header") Входящие
+.line-1px
+
+div(class="friends__container")
+script(src="/js/friends.js")

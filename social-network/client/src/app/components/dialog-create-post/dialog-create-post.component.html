@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Создание поста</h2>
+<form id="publishForm" [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Текст:</mat-label>
+    <textarea matInput formControlName="text"></textarea>
+    <mat-error [hidden]="!textError">{{textError}}</mat-error>
+  </mat-form-field>
+
+  <div class="form__image-load">
+    <div class="form__image-load__load">
+      <button
+        type="button" [title]="form.get('image')?.value?.name ?? 'Загрузить картинку'"
+        mat-raised-button (click)="fileInput.click()" class="form__button">
+        {{form.get('image')?.value?.name ?? 'Загрузить картинку'}}
+      </button>
+      <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+      <mat-error [hidden]="!imageError">{{imageError}}</mat-error>
+    </div>
+    <button type="button" (click)="removeImage(fileInput)" mat-raised-button [disabled]="!form.get('image')?.value">Удалить</button>
+  </div>
+</form>
+<div mat-dialog-actions>
+  <button
+    matButton
+    type="submit"
+    form="publishForm"
+    mat-dialog-close
+    cdkFocusInitial
+    [disabled]="this.form.invalid"
+  >
+    Опубликовать
+  </button>
+  <button matButton mat-dialog-close>Отменить</button>
+</div>

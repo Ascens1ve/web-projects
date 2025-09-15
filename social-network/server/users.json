@@ -1,0 +1,297 @@
+[
+  {
+    "id": 0,
+    "nickname": "professor",
+    "name": "Mickey",
+    "surname": "Langedate",
+    "avatar": "/uploads/cat-lol.webp",
+    "about": "Something about me. Hello Meow!",
+    "birthday": "13.05.2004",
+    "email": "proffesor14@gmail.com",
+    "cover": "/uploads/catcity.webp",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": [
+        24
+      ]
+    },
+    "posts": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 1,
+    "nickname": "clown",
+    "name": "Good",
+    "surname": "Bodies",
+    "avatar": "/uploads/avatar0.png",
+    "about": "Something about me.",
+    "email": "1234clown@gmail.ru",
+    "cover": "/uploads/angry-birds.jpg",
+    "role": "moderator",
+    "status": "blocked",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": [
+        24
+      ]
+    },
+    "posts": [
+      3,
+      4
+    ],
+    "birthday": "13.04.2019"
+  },
+  {
+    "id": 3,
+    "nickname": "wirtz",
+    "name": "Florian",
+    "surname": "Moriarty",
+    "avatar": "/uploads/avatar0.png",
+    "about": "Something about me.",
+    "email": "clow1212n@gmail.com",
+    "cover": "/uploads/catcity.webp",
+    "role": "moderator",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": [
+        24,
+        23
+      ]
+    },
+    "posts": []
+  },
+  {
+    "id": 4,
+    "nickname": "copiman",
+    "name": "Copi",
+    "surname": "Moriarty",
+    "avatar": "/uploads/avatar2.jpg",
+    "email": "clown@gmail.com",
+    "about": "Something about me.",
+    "cover": "/uploads/catcity.webp",
+    "role": "moderator",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": [
+        22,
+        24,
+        23
+      ]
+    },
+    "posts": []
+  },
+  {
+    "id": 5,
+    "nickname": "sherlock",
+    "name": "Sherlock",
+    "surname": "Holmes",
+    "avatar": "/uploads/avatar0.png",
+    "about": "Something about me.",
+    "email": "clown@gmail.com",
+    "cover": "/uploads/catcity.webp",
+    "role": "moderator",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": [
+        24,
+        23
+      ]
+    },
+    "posts": []
+  },
+  {
+    "id": 6,
+    "nickname": "joker",
+    "name": "Florian",
+    "surname": "Moriarty",
+    "avatar": "/uploads/avatar2.jpg",
+    "about": "Something about me.",
+    "email": "clown@gmail.com",
+    "cover": "/uploads/catcity.webp",
+    "role": "moderator",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": [
+        23
+      ]
+    },
+    "posts": []
+  },
+  {
+    "id": 18,
+    "nickname": "clown123",
+    "name": "rferfe",
+    "surname": "ferfeferf",
+    "avatar": "/uploads/avatar2.jpg",
+    "about": "Hehehe",
+    "email": "enqr34321i2e@mail.ru",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": [
+        23
+      ]
+    },
+    "friend_requests": [],
+    "posts": [
+      1,
+      2,
+      3
+    ],
+    "password": "$2b$08$BLpF7e57XeODTj988d0G5ub0HWWLJ14vafXwKa6tvS4NsSb33VKLa"
+  },
+  {
+    "id": 20,
+    "nickname": "Chok",
+    "name": "12",
+    "surname": "123",
+    "avatar": null,
+    "about": null,
+    "email": "sile34234232m@gmail.com",
+    "birthday": "2025-04-04",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": [
+        23
+      ]
+    },
+    "posts": [],
+    "password": "$2b$08$JE9LraQF5GwjuNow9G/q7eQ17eW2yTz.IJkna40/9pnOnDN/awFAy"
+  },
+  {
+    "id": 21,
+    "nickname": "Milan",
+    "name": "Илья",
+    "surname": "432234",
+    "avatar": null,
+    "about": null,
+    "email": "ilya23.edu@gmail.com",
+    "birthday": "2025-08-06",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": []
+    },
+    "posts": [],
+    "password": "$2b$08$gwvAFy7bFZKrfAa4U..gz.YxKUpvAQdLgVYfRt2qF5NNR0QmUE2xK"
+  },
+  {
+    "id": 22,
+    "nickname": "Member",
+    "name": "Илья",
+    "surname": "432234",
+    "avatar": null,
+    "about": null,
+    "email": "ilya.edu@gmail.com",
+    "birthday": "2025-08-06",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [
+        1,
+        4,
+        2
+      ],
+      "incoming": []
+    },
+    "posts": [],
+    "password": "$2b$08$gwvAFy7bFZKrfAa4U..gz.YxKUpvAQdLgVYfRt2qF5NNR0QmUE2xK"
+  },
+  {
+    "id": 23,
+    "nickname": "12345678",
+    "name": "1234567890",
+    "surname": "12345678345345",
+    "about": "Самый я.",
+    "email": "ilya.edu@gmail.c",
+    "birthday": "2025-08-14",
+    "role": "moderator",
+    "status": "active",
+    "friends": {
+      "active": [
+        24
+      ],
+      "outgoing": [
+        20,
+        18,
+        6,
+        4,
+        3,
+        5
+      ],
+      "incoming": []
+    },
+    "posts": [],
+    "password": "$2b$08$dAGrUeK.wMnbFe66qz7IN.Ett/E5HslQCLBeLsT1b5E7FkyQ4fCqm",
+    "avatar": "uploads/avatars/Charming Gray Cat With Umbrella And Sign On Cobblestone Street-1755783707588-967487666.png"
+  },
+  {
+    "id": 24,
+    "nickname": "qwerty123",
+    "name": "qwerty123",
+    "surname": "qwerty123",
+    "avatar": "uploads/avatars/Charming Gray Cat With Red Umbrella On Cobblestone Street-1756316609904-949183419.png",
+    "about": "",
+    "email": "i1214124@mail.ru",
+    "birthday": "2025-08-01",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [
+        23
+      ],
+      "outgoing": [
+        22,
+        0,
+        1,
+        3,
+        4,
+        5
+      ],
+      "incoming": []
+    },
+    "posts": [],
+    "password": "$2b$08$1seoZ.cz1fdQd1Iz9Nu1peV5U1/uIG0rzUB5CdZnzzKMuh9G6zPty"
+  },
+  {
+    "id": 25,
+    "nickname": "this.isSubmitting = false",
+    "name": "this.isSubmitting = false",
+    "surname": "this.isSubmitting = false",
+    "avatar": "uploads/avatars/Ð¡Ð½Ð¸Ð¼Ð¾Ðº ÑÐºÑÐ°Ð½Ð° 2023-09-11 145151-1756754663406-501848660.png",
+    "about": "",
+    "email": "32324@124243",
+    "birthday": "2004-09-19",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": []
+    },
+    "posts": [],
+    "password": "$2b$08$GLBYsqSmY9E4lHrqeaZJW.i2vILbUlSgbhjBzMruc5yz/2xda7Bu6"
+  }
+]

@@ -1,0 +1,47 @@
+<div class="categories">
+  <button
+    mat-flat-button
+    [color]="selectedCategory==='active' ? 'primary' : ''"
+    (click)="selectedCategory='active'"
+    [class.active]="selectedCategory==='active'"
+  >Активные</button>
+  <button
+    mat-flat-button
+    [color]="selectedCategory==='incoming' ? 'primary' : ''"
+    (click)="selectedCategory='incoming'"
+    [class.active]="selectedCategory==='incoming'"
+  >Входящие</button>
+  <button
+    mat-flat-button
+    [color]="selectedCategory==='outgoing' ? 'primary' : ''"
+    (click)="selectedCategory='outgoing'"
+    [class.active]="selectedCategory==='outgoing'"
+  >Исходящие</button>
+</div>
+<div class="friends">
+  @if (friendsSig()[selectedCategory].length === 0) {
+    <h2>В данной категории друзей нет</h2>
+  }
+  @else {
+    @for (friend of friendsSig()[selectedCategory]; track friend) {
+        <div class="friend">
+            <div class="friend__main-info">
+                <img [src]="friend.avatar ? (friend.avatar | imgUrl) : './assets/images/webp/invalid-avatar.webp'" alt="Аватар" class="friend__avatar">
+                <div>
+                    <h2 class="friend__names">{{friend.name}} {{friend.surname}} | <a class="friend__link" [routerLink]="['/profile', friend.nickname]"><strong>@{{friend.nickname}}</strong></a></h2>
+                </div>
+            </div>
+            @if (selectedCategory === 'active') {
+              <button mat-flat-button color='primary' class="friend__button" (click)="removeFriend(friend.id)">Удалить</button>
+            }
+            @else if (selectedCategory === 'outgoing') {
+              <button mat-flat-button color='primary' class="friend__button" (click)="declineFriend(friend.id, 'outgoing')">Отклонить</button>
+            }
+            @else if (selectedCategory === 'incoming') {
+              <button mat-flat-button color='primary' class="friend__button" (click)="acceptFriend(friend.id)">Принять</button>
+              <button mat-flat-button color='primary' class="friend__button" (click)="declineFriend(friend.id, 'incoming')">Отклонить</button>
+            }
+        </div>
+    }
+  }
+</div>

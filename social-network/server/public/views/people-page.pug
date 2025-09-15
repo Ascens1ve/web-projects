@@ -1,0 +1,68 @@
+doctype
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Люди
+        link(rel="stylesheet/less" type="text/css" href="/style/people.less")
+        link(rel="stylesheet/less" type="text/css" href="/style/nav.less")
+        //link(rel="stylesheet" href="/style/font-awesome-4.7.0/css/font-awesome.min.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        script(src="/js/less.js" type="text/javascript")
+        link(rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
+        script(src="https://code.jquery.com/jquery-3.7.1.js")
+        script(src="https://code.jquery.com/ui/1.14.1/jquery-ui.js")
+    body(class="page")
+        div(class="navbar")
+            img(class="navbar-icon" alt="Кот" src="/images/main-icon.webp" width="100" height="100")
+            ul(class="navbar__list")
+                li(class="navbar__item navbar__item_text") 
+                    a(href="/people" class="navbar__item-link") Люди
+
+        div(class="main")
+            h1(class="people-title") Список всех пользователей
+            div(class="search-container")
+                i(class="fa fa-search search-icon" aria-hidden="true")
+                input(type="search" id="people-search" placeholder="Введите имя и фамилию" class="search-input")
+            .line-1px
+            if people
+                each person in people
+                    div(class="person-with-line")
+                        div(class="person-container")
+                            if person.avatar
+                                img(class="person-avatar" src=`${serverUrl}/${person.avatar}` width="180" height="180")
+                            else
+                                img(class="person-avatar" src='/uploads/angry-birds.jpg' width="180" height="180")
+                            div(class="person-info")
+                                div(class="person-ids")
+                                    h2(class="person-fullname")
+                                        span(class=`fullname-text-${person.id}`) #{person.name} #{person.surname}
+                                        input(type="text" class=`name-input-${person.id}`, value=`${person.name}` style="display:none")
+                                        input(type="text" class=`surname-input-${person.id}`, value=`${person.surname}` style="display:none")
+                                    h2(class="person-nickname") 
+                                        a(href=`/profile/${person.id}` class="nickname-link") @#{person.nickname}
+                                .line-1px
+                                h2(class="person-birthday person-info__text") Дата рождения: 
+                                    span(class=`birthday-text-${person.id}`) #{person.birthday}
+                                    input(type="text" class=`birthday-input-${person.id}` value=`${person.birthday}` style="display:none")
+                                h2(class="person-email person-info__text") Почта: 
+                                    span(class=`email-text-${person.id}`) #{person.email}
+                                    input(type="email" class=`email-input-${person.id}` value=`${person.email}` style="display:none")
+                                button(class="person-info__text button-view" data-user-id=`${person.id}`) Изменить данные
+                                div(class="person-flex-row")
+                                    label(class="person-info__text") Роль:
+                                    select(name="role" class="role-change" data-user-id=`${person.id}`)
+                                        option(value="moderator" selected=person.role === 'moderator') Модератор
+                                        option(value="member" selected=person.role === 'member') Участник
+                                div(class="person-flex-row")
+                                    label(class="person-info__text") Статус:
+                                    select(name="status" class="status-change" data-user-id=`${person.id}`)
+                                        option(value="unconfirmed" selected=person.status === 'unconfirmed') Неподтвержденный
+                                        option(value="active" selected=person.status === 'active') Активный
+                                        option(value="blocked" selected=person.status === 'blocked') Заблокированный
+                                
+                        .line-1px
+        
+        script(src="/js/people.js")
+        <script src="/socket.io/socket.io.js"></script>
+        <script>const socket = io();</script>
