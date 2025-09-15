@@ -25,12 +25,14 @@
 - Языки: TypeScript, HTML5, CSS3
 - Библиотека: React
 - Состояние: Redux/Context
+- Взаимодействие с сервером: REST API, WebSocket (Socket.IO)
 - Сборка: Vite
 
 ### Клиент-брокер
 - Языки: TypeScript, HTML5, CSS3
 - Фреймворк: Vue 3
 - Состояние: Pinia
+- Взаимодействие с сервером: REST API, WebSocket (Socket.IO)
 - Сборка: Vite
 - Стили: Sass
 
