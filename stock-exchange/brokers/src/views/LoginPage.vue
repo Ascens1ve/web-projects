@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import NotifyModal from '@/components/NotifyModal.vue';
 import { useAlert } from '@/composables/useAlert';
 import router from '@/router';
 import { useUserStore } from '@/services/userStore';
@@ -16,7 +15,7 @@ const formValues = ref<ILoginData>({
 });
 
 const store = useUserStore();
-const { alertConfig, updateAlert } = useAlert();
+const { updateAlert } = useAlert();
 
 const handleLoginSubmit = async () => {
   try {
@@ -37,12 +36,6 @@ watch(
 </script>
 
 <template>
-  <NotifyModal
-    v-bind:type="alertConfig.type"
-    v-bind:state="alertConfig.state"
-    @close="alertConfig.state = 'hidden'"
-    >{{ alertConfig.text }}</NotifyModal
-  >
   <div class="form-wrapper">
     <form class="form" @submit.prevent="handleLoginSubmit">
       <div class="form-element">

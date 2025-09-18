@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
-import { StockSymbols, type IAlert } from '@/interfaces';
+import { StockSymbols } from '@/interfaces';
 import { useStocksStore } from '@/services/stocksStore';
-import NotifyModal from '@/components/NotifyModal.vue';
 import { actionsHandler, parseDollar } from '@/services/helper';
 import { storeToRefs } from 'pinia';
 import { useSocketTrades } from '@/composables/useSocketTrades';
 import { useChart } from '@/composables/useChart';
 import ButtonComponent from '@/components/ButtonComponent.vue';
 import { fetchBuyingPrices } from '@/services/api';
+import { useAlert } from '@/composables/useAlert';
 
 interface DerivedShare {
   amount: number;
@@ -27,19 +27,6 @@ const {
 
 const fullBalance = computed(() => moneyBalance.value + shareBalance.value);
 
-// Alert configuration
-const alertConfig = ref<IAlert>({
-  type: 'failed',
-  state: 'hidden',
-  text: 'Something',
-});
-
-const updateAlert = (config: IAlert) => {
-  alertConfig.value.type = config.type;
-  alertConfig.value.state = config.state;
-  alertConfig.value.text = config.text;
-};
-
 const buyingPrice = ref<Partial<Record<StockSymbols, number>>>({});
 const handleUpdatePrices = async () => {
   const result = await fetchBuyingPrices();
@@ -53,7 +40,9 @@ const handleUpdatePrices = async () => {
 const chartRef = ref<HTMLCanvasElement | null>(null);
 const modalRef = ref<HTMLDialogElement | null>(null);
 
-const { speed, choosedCompanies, stocks, isStart, connect, trade, notify } = useSocketTrades();
+const { updateAlert } = useAlert();
+
+const { speed, choosedCompanies, stocks, isStart, connect, trade } = useSocketTrades();
 const currentSymbol = ref<StockSymbols | null>(null);
 
 watch(choosedCompanies, () => {
@@ -113,7 +102,7 @@ async function shareAction(
   type: 'buy' | 'sell',
 ) {
   const res = await trade(name, amount, price, type);
-  updateAlert({ text: res.message, state: 'active', type: res.success ? 'success' : 'failed' });
+  updateAlert(res.success ? 'success' : 'failed', 'active', res.message);
   if (res.action) {
     actionsHandler(name, res.action, stocksStore);
     handleUpdatePrices();
@@ -139,14 +128,10 @@ watch(
   () => stocksStore.error,
   (newValue) => {
     if (newValue !== '') {
-      updateAlert({ text: newValue, state: 'active', type: 'failed' });
+      updateAlert('failed', 'active', newValue);
     }
   },
 );
-
-watch(notify, () => {
-  updateAlert({ text: notify.value.message, state: 'active', type: notify.value.state });
-});
 
 onMounted(() => {
   if (chartRef.value) {
@@ -160,12 +145,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <NotifyModal
-    v-bind:type="alertConfig.type"
-    v-bind:state="alertConfig.state"
-    @close="alertConfig.state = 'hidden'"
-    >{{ alertConfig.text }}</NotifyModal
-  >
   <div>
     <ButtonComponent class="widthmax" v-if="!isStart" @click="connect" variant="outlined"
       >Участвовать в торгах</ButtonComponent

@@ -1,24 +1,33 @@
 <script setup lang="ts">
-import type { IAlert } from '@/interfaces';
+import { useAlert } from '@/composables/useAlert';
+import { watch } from 'vue';
 
-withDefaults(defineProps<Omit<IAlert, 'text'>>(), {
-  type: 'normal',
-  state: 'hidden',
-});
-
-const emit = defineEmits(['close']);
+const { alertConfig } = useAlert();
 
 const handleClose = () => {
-  emit('close');
+  alertConfig.value.state = 'hidden';
 };
+
+let timer: ReturnType<typeof setTimeout> | null = null;
+
+watch(
+  () => alertConfig.value.state,
+  () => {
+    if (timer !== null) clearTimeout(timer);
+    timer = setTimeout(() => {
+      handleClose();
+      timer = null;
+    }, 3000);
+  },
+);
 </script>
 
 <template>
-  <div v-bind:class="`alert alert_${type} alert_${state}`">
+  <div v-bind:class="`alert alert_${alertConfig.type} alert_${alertConfig.state}`">
     <button class="close-button" v-on:click="handleClose">
       <img src="@/assets/address-card.svg" width="15" height="15" alt="X" class="close-icon" />
     </button>
-    <slot />
+    {{ alertConfig.text }}
   </div>
 </template>
 
@@ -29,7 +38,8 @@ const handleClose = () => {
   left: 50%;
   transform: translateX(-50%);
   width: 450px;
-  height: 70px;
+  height: min-content;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +52,7 @@ const handleClose = () => {
 }
 
 .alert_active {
-  top: 150px;
+  top: 20px;
 }
 
 .alert_success {
@@ -63,9 +73,9 @@ const handleClose = () => {
   box-sizing: border-box;
   box-shadow: 0 0 0 0px black;
   transition: box-shadow 0.3s ease;
-  display: flex; /* <-- flex-контейнер */
-  align-items: center; /* горизонтально по-центру */
-  justify-content: center; /* вертикально по-центру */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 4px;
 }
 

@@ -12,6 +12,7 @@ interface UserState {
   };
   isAuthChecked: boolean;
   isAuthenticated: boolean;
+  isLoading: boolean;
   error: string;
 }
 
@@ -24,6 +25,7 @@ export const useUserStore = defineStore('user', {
       role: null,
       baseMoney: 0,
     },
+    isLoading: false,
     isAuthChecked: false,
     isAuthenticated: false,
     error: '',
@@ -78,6 +80,12 @@ export const useUserStore = defineStore('user', {
     },
     clearError(): void {
       this.error = '';
+    },
+    startLoading(): void {
+      this.isLoading = true;
+    },
+    stopLoading(): void {
+      this.isLoading = false;
     },
   },
 });

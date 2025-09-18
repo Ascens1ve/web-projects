@@ -60,9 +60,4 @@ export interface IResponse {
   action: IAction;
 }
 
-export interface INotify {
-  message: string;
-  state: 'success' | 'failed' | 'normal';
-}
-
 export const baseURL = 'http://localhost:3000';

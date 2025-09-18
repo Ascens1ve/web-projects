@@ -1,6 +1,5 @@
 import {
   StockSymbols,
-  type INotify,
   type IResponse,
   type IStartData,
   type IStocks,
@@ -10,6 +9,7 @@ import { parseDollar } from '@/services/helper';
 import { useStocksStore } from '@/services/stocksStore';
 import { io } from 'socket.io-client';
 import { onUnmounted, reactive, ref, shallowRef } from 'vue';
+import { useAlert } from './useAlert';
 
 export function useSocketTrades() {
   const stocks = reactive<Partial<Record<StockSymbols, IStocks[]>>>({});
@@ -24,7 +24,7 @@ export function useSocketTrades() {
   const speed = shallowRef<number>(0);
   const isStart = shallowRef<boolean>(false);
   const choosedCompanies = ref<StockSymbols[]>([]);
-  const notify = ref<INotify>({ message: '', state: 'normal' });
+  const { updateAlert } = useAlert();
 
   function connect() {
     socket.connect();
@@ -60,7 +60,7 @@ export function useSocketTrades() {
 
   events.forEach((event: string) => {
     socket.on(event, (body: Omit<IResponse, 'action'>) => {
-      notify.value = { message: body.message, state: body.success ? 'success' : 'failed' };
+      updateAlert(body.success ? 'success' : 'failed', 'active', body.message);
     });
   });
 
@@ -79,5 +79,5 @@ export function useSocketTrades() {
 
   onUnmounted(() => socket.disconnect());
 
-  return { speed, choosedCompanies, stocks, connect, trade, isStart, notify };
+  return { speed, choosedCompanies, stocks, connect, trade, isStart };
 }

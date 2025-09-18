@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import HeaderComponent from './components/HeaderComponent.vue';
+import LoadingComponent from './components/LoadingComponent.vue';
 import { useUserStore } from './services/userStore';
-useUserStore().checkAuth();
+import NotifyModal from './components/NotifyModal.vue';
+
+const us = useUserStore();
 </script>
 
 <template>
   <div id="app" class="main">
+    <NotifyModal />
     <HeaderComponent />
-    <RouterView />
+    <LoadingComponent v-if="us.isLoading" />
+    <RouterView v-else />
   </div>
 </template>
 

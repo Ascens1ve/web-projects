@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ButtonComponent from '@/components/ButtonComponent.vue';
-import NotifyModal from '@/components/NotifyModal.vue';
 import { useAlert } from '@/composables/useAlert';
 import type { StockSymbols } from '@/interfaces';
 import { fetchBrokersInfo } from '@/services/api';
@@ -13,7 +12,7 @@ type TInfo = Record<
     balance: number;
   }
 >;
-
+const { updateAlert } = useAlert();
 const info = ref<TInfo>({});
 const isLoading = ref<boolean>(false);
 
@@ -30,20 +29,12 @@ const updateInfo = async () => {
   }
 };
 
-const { alertConfig, updateAlert } = useAlert();
-
 onMounted(() => {
   updateInfo();
 });
 </script>
 
 <template>
-  <NotifyModal
-    v-bind:type="alertConfig.type"
-    v-bind:state="alertConfig.state"
-    @close="alertConfig.state = 'hidden'"
-    >{{ alertConfig.text }}</NotifyModal
-  >
   <ButtonComponent @click="updateInfo">Обновить</ButtonComponent>
   <div class="table-wrapper">
     <table class="table">

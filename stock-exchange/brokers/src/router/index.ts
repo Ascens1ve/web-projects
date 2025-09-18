@@ -3,6 +3,7 @@ import MainPage from '@/views/MainPage.vue';
 import AdminPage from '@/views/AdminPage.vue';
 import { useUserStore } from '@/services/userStore';
 import NotFoundPage from '@/views/NotFoundPage.vue';
+import LoginPage from '../views/LoginPage.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,7 +17,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginPage.vue'),
+      component: LoginPage,
       meta: { guestOnly: true },
     },
     {
@@ -35,6 +36,7 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   const user = useUserStore();
+  user.startLoading();
   if (!user.isAuthChecked) {
     await user.checkAuth();
   }
@@ -42,6 +44,10 @@ router.beforeEach(async (to) => {
   if (to.meta.guestOnly && user.isAuthenticated) return { name: 'home' };
   if (to.meta.requiresAdmin && !user.isAdmin()) return { name: 'home' };
   return true;
+});
+
+router.afterEach(() => {
+  useUserStore().stopLoading();
 });
 
 export default router;
