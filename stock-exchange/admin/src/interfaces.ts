@@ -56,6 +56,8 @@ export interface IAuth {
     alias: string;
 }
 
+export type NotificationType = 'success' | 'error' | 'warn';
+
 export const baseURL = 'http://localhost:3000';
 export const eventsUrl = 'http://localhost:3001/events';
 

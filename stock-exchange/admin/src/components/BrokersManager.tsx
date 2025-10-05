@@ -16,10 +16,11 @@ import {
     translate,
 } from '../interfaces';
 import { useLanguage } from '../hooks/useLanguage';
-import { useNotification } from '../store/notificationContext';
+import { useDispatch } from '../store/store';
+import { show } from '../store/notificationSlice';
 
 export default function BrokersManager() {
-    const notification = useNotification();
+    const dispatch = useDispatch();
     const language = useLanguage();
     const [brokers, setBrokers] = useState<IBroker[]>([]);
     const [addBroker, setAddBroker] = useState<boolean>(false);
@@ -40,7 +41,7 @@ export default function BrokersManager() {
             const brokers = await postBroker(data);
             if (brokers) setBrokers([...brokers]);
         } catch (error) {
-            notification.showNotification((error as Error).message, 'error');
+            dispatch(show({ message: (error as Error).message, type: 'error' }));
         }
     };
 
@@ -52,7 +53,7 @@ export default function BrokersManager() {
                 setBrokers([...brokers]);
             }
         } catch (error) {
-            notification.showNotification((error as Error).message, 'error');
+            dispatch(show({ message: (error as Error).message, type: 'error' }));
         }
         
     };

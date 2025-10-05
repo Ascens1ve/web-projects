@@ -7,10 +7,12 @@ import {
 } from 'react-redux';
 import { stocksReducer } from './stocksSlice';
 import { StocksCompanies } from '../interfaces';
+import { notificationReducer } from './notificationSlice';
 
 export const rootReducer = combineReducers({
     user: userReducer,
     stocks: stocksReducer,
+    notification: notificationReducer,
 });
 
 const store = configureStore({

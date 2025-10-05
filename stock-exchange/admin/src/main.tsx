@@ -1,17 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import App from './App';
+import { App } from './App';
 import { Provider } from 'react-redux';
 import store from './store/store';
-import { NotificationProvider } from './store/notificationContext';
+import { Notification } from './components/Notification';
 
 createRoot(root).render(
     <StrictMode>
         <Provider store={store}>
-            <NotificationProvider>
-                <App />
-            </NotificationProvider>
+            <Notification />
+            <App />
         </Provider>
     </StrictMode>
 );

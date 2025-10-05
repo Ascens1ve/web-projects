@@ -26,7 +26,6 @@ import {
 import { Header } from '../components/Header';
 import './StocksPage.css';
 import { parseDollar } from '../helper';
-import { useNotification } from '../store/notificationContext';
 
 Chart.register(...registerables);
 Chart.register(zoomPlugin);
@@ -39,7 +38,7 @@ const columns: GridColDef[] = [
 ];
 
 export const StocksPage = () => {
-    const notificationContext = useNotification();
+    const dispatch = useDispatch();
     const chartRef = useRef<HTMLCanvasElement | null>(null);
     const chartInstanceRef = useRef<Chart | null>(null);
     const [company, setCompany] = useState<StocksCompanies>(StocksCompanies.AAPL);
@@ -49,7 +48,6 @@ export const StocksPage = () => {
     const [selectedCompanies, setSelectedCompanies] = useState<
         StocksCompanies[]
     >([]);
-    const dispatch = useDispatch();
 
     const handleChooseCompany = async (event: SelectChangeEvent) => {
         const resultAction = await dispatch(

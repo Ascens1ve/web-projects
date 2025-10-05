@@ -30,10 +30,9 @@ import { useLanguage } from '../hooks/useLanguage';
 import { eventsUrl, IResponse, IStocks, StocksCompanies, translate } from '../interfaces';
 import { io, Socket } from 'socket.io-client';
 import { parseDollar } from '../helper';
-
 import { useForm, Controller } from 'react-hook-form';
 import { Alert, Button, TextField } from '@mui/material';
-import { useNotification } from '../store/notificationContext';
+import { show } from '../store/notificationSlice';
 
 interface IData {
     speed: number | undefined;
@@ -48,8 +47,6 @@ type FormValues = {
 
 export const ImitationPage = () => {
     const dispatch = useDispatch();
-    const notificationContext = useNotification();
-
     const language = useLanguage();
     const t = translate[language];
     
@@ -116,21 +113,21 @@ export const ImitationPage = () => {
         socket.on('pause', (body: IResponse) => {
             if (body.success) {
                 dispatch(setBidState(BidState.pause));
-                notificationContext.showNotification('Торги приостановлены', 'warn');
+                dispatch(show({ message: 'Торги приостановлены', type: 'warn' }));
             }
         })
 
         socket.on('resume', (body: IResponse) => {
             if (body.success) {
                 dispatch(setBidState(BidState.running));
-                notificationContext.showNotification('Торги возобновлены', 'warn');
+                dispatch(show({ message: 'Торги возобновлены', type: 'warn' }));
             }
         })
 
         socket.on('end', (body: IResponse) => {
             if (body.success) {
                 dispatch(setBidState(BidState.stop));
-                notificationContext.showNotification('Торги закончены', 'warn');
+                dispatch(show({ message: 'Торги закончены', type: 'warn' }));
             }
         });
 
