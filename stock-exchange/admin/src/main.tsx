@@ -7,10 +7,10 @@ import store from './store/store';
 import { Notification } from './components/Notification';
 
 createRoot(root).render(
-    <StrictMode>
-        <Provider store={store}>
-            <Notification />
-            <App />
-        </Provider>
-    </StrictMode>
+  <StrictMode>
+    <Provider store={store}>
+      <Notification />
+      <App />
+    </Provider>
+  </StrictMode>,
 );

@@ -1,11 +1,11 @@
-import BrokersManager from '../components/BrokersManager';
+import { BrokersPage } from './BrokersPage';
 import { Header } from '../components/Header';
 
 export const HomePage = () => {
-    return (
-        <>
-            <Header />
-            <BrokersManager />
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <BrokersPage />
+    </>
+  );
 };

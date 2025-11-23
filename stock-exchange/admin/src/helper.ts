@@ -1,3 +1,3 @@
 export function parseDollar(value: string): number {
-    return Number(value.split('$')[1]);
+  return Number(value.split('$')[1]);
 }

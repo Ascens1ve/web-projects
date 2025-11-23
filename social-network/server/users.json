@@ -191,7 +191,9 @@
     "friends": {
       "active": [],
       "outgoing": [],
-      "incoming": []
+      "incoming": [
+        24
+      ]
     },
     "posts": [],
     "password": "$2b$08$gwvAFy7bFZKrfAa4U..gz.YxKUpvAQdLgVYfRt2qF5NNR0QmUE2xK"
@@ -224,7 +226,7 @@
     "nickname": "12345678",
     "name": "1234567890",
     "surname": "12345678345345",
-    "about": "Самый я.",
+    "about": "Самый я. 123",
     "email": "ilya.edu@gmail.c",
     "birthday": "2025-08-14",
     "role": "moderator",
@@ -245,14 +247,14 @@
     },
     "posts": [],
     "password": "$2b$08$dAGrUeK.wMnbFe66qz7IN.Ett/E5HslQCLBeLsT1b5E7FkyQ4fCqm",
-    "avatar": "uploads/avatars/Charming Gray Cat With Umbrella And Sign On Cobblestone Street-1755783707588-967487666.png"
+    "avatar": "uploads/avatars/photo_2023-09-10_18-06-18-1763377031443-186239863.jpg"
   },
   {
     "id": 24,
     "nickname": "qwerty123",
     "name": "qwerty123",
     "surname": "qwerty123",
-    "avatar": "uploads/avatars/Charming Gray Cat With Red Umbrella On Cobblestone Street-1756316609904-949183419.png",
+    "avatar": "uploads/avatars/cats-1763920443396-686630987.webp",
     "about": "",
     "email": "i1214124@mail.ru",
     "birthday": "2025-08-01",
@@ -263,35 +265,16 @@
         23
       ],
       "outgoing": [
-        22,
         0,
         1,
         3,
         4,
-        5
+        5,
+        21
       ],
       "incoming": []
     },
     "posts": [],
     "password": "$2b$08$1seoZ.cz1fdQd1Iz9Nu1peV5U1/uIG0rzUB5CdZnzzKMuh9G6zPty"
-  },
-  {
-    "id": 25,
-    "nickname": "this.isSubmitting = false",
-    "name": "this.isSubmitting = false",
-    "surname": "this.isSubmitting = false",
-    "avatar": "uploads/avatars/Ð¡Ð½Ð¸Ð¼Ð¾Ðº ÑÐºÑÐ°Ð½Ð° 2023-09-11 145151-1756754663406-501848660.png",
-    "about": "",
-    "email": "32324@124243",
-    "birthday": "2004-09-19",
-    "role": "member",
-    "status": "active",
-    "friends": {
-      "active": [],
-      "outgoing": [],
-      "incoming": []
-    },
-    "posts": [],
-    "password": "$2b$08$GLBYsqSmY9E4lHrqeaZJW.i2vILbUlSgbhjBzMruc5yz/2xda7Bu6"
   }
 ]

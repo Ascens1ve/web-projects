@@ -65,7 +65,7 @@ const derivedShares = computed<Record<StockSymbols, DerivedShare | undefined>>((
     const ap = amountAndPrice.value.get(company);
     if (!ap || !buyingPrice.value[company]) {
       result[company] = undefined;
-      break;
+      continue;
     }
     const currentPrice = ap[1];
     const amount = ap[0];
@@ -145,7 +145,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="main__wrapper">
     <ButtonComponent class="widthmax" v-if="!isStart" @click="connect" variant="outlined"
       >Участвовать в торгах</ButtonComponent
     >
@@ -180,7 +180,7 @@ onUnmounted(() => {
         <ButtonComponent @click="handleUpdatePrices">⟳</ButtonComponent>
       </h2>
       <div class="table-wrapper">
-        <table class="table">
+        <table class="table" data-table="second">
           <thead>
             <tr>
               <th class="table-cell">Компании</th>
@@ -205,11 +205,15 @@ onUnmounted(() => {
       <ButtonComponent @click="closeModal" class="close-button">
         <img src="@/assets/address-card.svg" width="15" height="15" alt="X" class="close-icon" />
       </ButtonComponent>
-      <select v-model="currentSymbol">
-        <option v-for="company in choosedCompanies" v-bind:key="company" v-bind:value="company">
-          {{ company }}
-        </option>
-      </select>
+      <label class="select">
+        <span class="select__label">
+          <select v-model="currentSymbol" class="select__control">
+            <option v-for="company in choosedCompanies" v-bind:key="company" v-bind:value="company">
+              {{ company }}
+            </option>
+          </select>
+        </span>
+      </label>
       <canvas ref="chartRef"></canvas>
       <h2>
         Цена:
@@ -243,6 +247,10 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: stretch;
   gap: 30px;
+}
+
+.main__wrapper {
+  width: 100%;
 }
 
 .table {
@@ -294,6 +302,7 @@ onUnmounted(() => {
 }
 
 .widthmax {
+  margin-top: 10px;
   width: 100%;
 }
 
@@ -306,6 +315,44 @@ canvas {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.select {
+  display: inline flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.select__control {
+  appearance: none;
+  width: 260px;
+  padding: 10px 40px 10px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  background: #fff
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23677485' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>")
+    no-repeat right 12px center / 16px 16px;
+  font:
+    14px/1.4 system-ui,
+    sans-serif;
+  color: #111827;
+}
+
+.select__control:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+.select__control:hover {
+  border-color: #9aa4b2;
+}
+.select__control:disabled {
+  background-color: #f3f4f6;
+  color: #9aa4b2;
+  cursor: not-allowed;
+}
+.select__control:invalid {
+  border-color: #ef4444;
 }
 
 @media only screen and (max-width: 768px) {

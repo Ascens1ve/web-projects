@@ -13,7 +13,6 @@ import { PostStore } from '../../services/post.store';
 import { PostService } from '../../services/post.service';
 import { MatButtonModule } from '@angular/material/button';
 
-
 @Component({
   selector: 'app-profile-page',
   imports: [PostsComponent, ImgUrlPipe, MatButtonModule],

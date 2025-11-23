@@ -35,11 +35,13 @@
               <button mat-flat-button color='primary' class="friend__button" (click)="removeFriend(friend.id)">Удалить</button>
             }
             @else if (selectedCategory === 'outgoing') {
-              <button mat-flat-button color='primary' class="friend__button" (click)="declineFriend(friend.id, 'outgoing')">Отклонить</button>
+              <button mat-flat-button color='primary' class="friend__button" (click)="declineFriend(friend.id, 'outgoing')">Отменить</button>
             }
             @else if (selectedCategory === 'incoming') {
-              <button mat-flat-button color='primary' class="friend__button" (click)="acceptFriend(friend.id)">Принять</button>
-              <button mat-flat-button color='primary' class="friend__button" (click)="declineFriend(friend.id, 'incoming')">Отклонить</button>
+              <div class="friend__buttons">
+                <button mat-flat-button color='primary' class="friend__button friend__button_green" (click)="acceptFriend(friend.id)">Принять</button>
+                <button mat-flat-button color='primary' class="friend__button friend__button_red" (click)="declineFriend(friend.id, 'incoming')">Отклонить</button>
+              </div>
             }
         </div>
     }

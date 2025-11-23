@@ -30,6 +30,7 @@ export const fetchBroker = async (): Promise<IBroker> => {
 };
 
 export const fetchBuyingPrices = async (): Promise<Partial<Record<StockSymbols, number>>> => {
+  console.log('FECT');
   const res = await fetch(`${baseURL}/buying-price`, {
     method: 'GET',
     headers: {

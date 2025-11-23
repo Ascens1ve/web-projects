@@ -2,11 +2,9 @@
 withDefaults(
   defineProps<{
     variant?: 'text' | 'contained' | 'outlined';
-    onClick?: () => void;
   }>(),
   {
     variant: 'contained',
-    onClick: () => {},
   },
 );
 </script>

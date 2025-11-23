@@ -50,16 +50,21 @@ function hasKeys(obj, keys) {
   return keys.every(key => Object.prototype.hasOwnProperty.call(obj, key));
 }
 
-function omit(key, obj) {
-    if (!obj) return obj;
-    const { [key]: omitted, ...rest } = obj;
-    return rest;
+function omit(keys, obj) {
+  if (!obj) return obj;
+  if (!Array.isArray(keys)) keys = [keys];
+
+  const rest = { ...obj };
+  for (const key of keys) {
+    delete rest[key];
+  }
+  return rest;
 }
 
 function transformFriends(friends) {
     const friendsTransformed = structuredClone(friends);
     for (const key in friends) {
-        friendsTransformed[key] = friendsTransformed[key].map(id => omit('password', DataWatcher.users.find(u => u.id === id))).filter(Boolean);
+        friendsTransformed[key] = friendsTransformed[key].map(id => omit(['password'], DataWatcher.users.find(u => u.id === id))).filter(Boolean);
     }
     return friendsTransformed;
 }
@@ -118,9 +123,9 @@ apiRouter.post('/registration', async (request, response) => {
     try {
         const user = DataWatcher.users.find(user => user.nickname === request.body.nickname);
         if (user) {
-            return response.status(500).json({ error: 'A user with the current nickname already exists' });
+            return response.status(403).json({ error: 'A user with the current nickname already exists' });
         }
-        const id = DataWatcher.users[DataWatcher.users.length - 1].id + 1;
+        const id = DataWatcher.usersMaxID;
         await DataWatcher.appendUser(
             {
                 id: id,
@@ -148,7 +153,11 @@ apiRouter.post('/registration', async (request, response) => {
             nickname: request.body.nickname,
             name: request.body.name,
             surname: request.body.surname,
-            friends: [],
+            friends: {
+                active: [],
+                incoming: [],
+                outgoing: []
+            },
             token: token,
         });
     } catch (error) {
@@ -160,7 +169,7 @@ apiRouter.post('/login', async (request, response) => {
     try {
         const user = DataWatcher.users.find(user => user.nickname === request.body.nickname);
         if (!user) {
-            return response.status(500).json({ error: 'The user was not found!' });
+            return response.status(404).json({ error: 'The user was not found!' });
         }
         if (await bcrypt.compare(request.body.password, user.password)) {
             const token = jwt.sign(user, privateKey, { expiresIn: '4h' });
@@ -172,7 +181,7 @@ apiRouter.post('/login', async (request, response) => {
             };
             for (const key in user.friends) {
                 for (let i = 0; i < user.friends[key].length; i++) {
-                    friends[key].push(DataWatcher.users.find(u => u.id === user.friends[key][i]));
+                    friends[key].push(omit('password', DataWatcher.users.find(u => u.id === user.friends[key][i])));
                 }
             }
             response.status(200).json({ 
@@ -185,7 +194,7 @@ apiRouter.post('/login', async (request, response) => {
                 token: token,
             });
         } else {
-            return response.status(500).json({ error: 'The passwords didn\'t match' });
+            return response.status(403).json({ error: 'The passwords didn\'t match' });
         }
     } catch (error) {
         return response.status(500).json({ error: 'Error when logging!' });
@@ -244,7 +253,7 @@ apiRouter.get('/friends/:nickname', (request, response) => {
     }
 });
 
-apiRouter.get('/people', function (request, response) {
+apiRouter.get('/people', (request, response) => {
     try {
         const people = [];
         for (const user of DataWatcher.users) {

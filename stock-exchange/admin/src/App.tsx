@@ -9,49 +9,49 @@ import { ImitationPage } from './pages/ImitationPage';
 import { ErrorWatcher } from './components/ErrorsWatcher';
 
 export const App = () => (
-    <BrowserRouter>
-        <ErrorWatcher />
-        <Routes>
-            <Route
-                path="/"
-                element={
-                    <ProtectedRoute onlyAuth>
-                        <HomePage />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/login"
-                element={
-                    <ProtectedRoute onlyUnAuth>
-                        <LoginPage />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/registration"
-                element={
-                    <ProtectedRoute onlyUnAuth>
-                        <RegistrationPage />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/stocks"
-                element={
-                    <ProtectedRoute onlyAuth>
-                        <StocksPage />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/imitation"
-                element={
-                    <ProtectedRoute onlyAuth>
-                        <ImitationPage />
-                    </ProtectedRoute>
-                }
-            />
-        </Routes>
-    </BrowserRouter>
+  <BrowserRouter>
+    <ErrorWatcher />
+    <Routes>
+      <Route
+        path='/'
+        element={
+          <ProtectedRoute onlyAuth>
+            <HomePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path='/login'
+        element={
+          <ProtectedRoute onlyUnAuth>
+            <LoginPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path='/registration'
+        element={
+          <ProtectedRoute onlyUnAuth>
+            <RegistrationPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path='/stocks'
+        element={
+          <ProtectedRoute onlyAuth>
+            <StocksPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path='/imitation'
+        element={
+          <ProtectedRoute onlyAuth>
+            <ImitationPage />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  </BrowserRouter>
 );

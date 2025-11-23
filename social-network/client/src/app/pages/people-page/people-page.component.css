@@ -36,6 +36,27 @@
     width: 20%;
 }
 
+.friend__buttons {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.friend__buttons .friend__button {
+  width: 100%;
+}
+
+.friend__button_red {
+  color: white;
+  background-color: #f44336;
+}
+
+.friend__button_green {
+  color: white;
+  background-color: #37ca30;
+}
+
 .people {
     display: flex;
     flex-direction: column;

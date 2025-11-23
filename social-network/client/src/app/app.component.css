@@ -26,13 +26,13 @@
   }
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 900px) {
   .page {
     max-width: 900px;
   }
 }
 
-@media only screen and (min-width: 1382px) {
+@media only screen and (min-width: 1200px) {
   .page {
     max-width: 1200px;
   }

@@ -1,40 +1,64 @@
 <script setup lang="ts">
-import { useAlert } from '@/composables/useAlert';
-import { watch } from 'vue';
+import { useAlert, type Alert } from '@/composables/useAlert';
+import { nextTick, ref, watch } from 'vue';
 
-const { alertConfig } = useAlert();
+const { alertConfig, clearAlert } = useAlert();
 
 const handleClose = () => {
-  alertConfig.value.state = 'hidden';
+  config.value.state = 'hidden';
 };
 
-let timer: ReturnType<typeof setTimeout> | null = null;
+let timer: ReturnType<typeof setTimeout>;
+const queue = ref<Alert[]>([]);
+const isAvailable = ref<boolean>(false);
 
-watch(
-  () => alertConfig.value.state,
-  () => {
-    if (timer !== null) clearTimeout(timer);
+const config = ref<Alert>({ ...alertConfig.value });
+
+const f = () => {
+  if (!queue.value.length) return;
+  if (isAvailable.value) return;
+  else {
+    config.value = queue.value.shift()!;
+    isAvailable.value = true;
+    if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
       handleClose();
-      timer = null;
     }, 3000);
+  }
+};
+
+const onAfterLeave = () => {
+  isAvailable.value = false;
+  f();
+};
+
+watch(
+  alertConfig,
+  (newValue) => {
+    if (!newValue || newValue.state === 'hidden') return;
+    queue.value.push({ ...newValue });
+    f();
+    nextTick(() => clearAlert());
   },
+  { deep: true },
 );
 </script>
 
 <template>
-  <div v-bind:class="`alert alert_${alertConfig.type} alert_${alertConfig.state}`">
-    <button class="close-button" v-on:click="handleClose">
-      <img src="@/assets/address-card.svg" width="15" height="15" alt="X" class="close-icon" />
-    </button>
-    {{ alertConfig.text }}
-  </div>
+  <Transition v-on:after-leave="onAfterLeave" mode="out-in">
+    <div v-if="config.state === 'active'" class="alert" :class="`alert_${config.type}`">
+      <button class="close-button" v-on:click="handleClose">
+        <img src="@/assets/address-card.svg" width="15" height="15" alt="X" class="close-icon" />
+      </button>
+      {{ config.text }}
+    </div>
+  </Transition>
 </template>
 
 <style>
 .alert {
   position: absolute;
-  top: -300px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: 450px;
@@ -51,16 +75,16 @@ watch(
   z-index: 5;
 }
 
-.alert_active {
-  top: 20px;
-}
-
 .alert_success {
-  background: rgb(16, 232, 70);
+  background-color: rgba(54, 209, 134, 1);
 }
 
 .alert_failed {
-  background: rgb(130, 38, 38);
+  background-color: rgba(201, 58, 58, 1);
+}
+
+.alert_warn {
+  background-color: rgba(238, 245, 108, 1);
 }
 
 .close-button {
@@ -81,5 +105,15 @@ watch(
 
 .close-button:hover {
   box-shadow: 0 0 0 2px black;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: top 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  top: -200px;
 }
 </style>

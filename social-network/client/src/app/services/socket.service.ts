@@ -75,10 +75,16 @@ export class SocketService {
   }
 
   onUpdateProfile(callback: (data: IEditProfileResponse) => void) {
-    this.socket.on('update/profile', callback);
+    //this.socket.on('update/profile', callback);
+    this.socket.on('update/profile', (data) => {
+      this.ngZone.run(() => callback(data));
+    });
   }
 
   onUpdateRelation(callback: (data: IRelationUpdate) => void) {
-    this.socket.on('update/people', callback);
+    //this.socket.on('update/people', callback);
+    this.socket.on('update/people', (data) => {
+      this.ngZone.run(() => callback(data));
+    });
   }
 }

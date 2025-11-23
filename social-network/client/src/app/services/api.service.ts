@@ -32,18 +32,6 @@ export class ApiService {
     return this.http.get<IProfile[]>(`${expressUrl}/people`);
   }
 
-  removeFriend(userNickname: string, friendId: number) {
-    return this.http.delete(`${expressUrl}/friends/${userNickname}/delete/${friendId}`);
-  }
-
-  addFriend(userNickname: string, friendId: number) {
-    return this.http.post(`${expressUrl}/friends/${userNickname}/add/${friendId}`, null);
-  }
-
-  putLike(postId: number, userNickname: string) {
-    return this.http.put<number[]>(`${expressUrl}/posts/${postId}/like/${userNickname}`, null);
-  }
-
   postEditProfile(formData: FormData) {
     return this.http.post<IEditProfileResponse>(`${expressUrl}/edit-profile`, formData, {
       headers: {

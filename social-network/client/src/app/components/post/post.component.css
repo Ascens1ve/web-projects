@@ -29,7 +29,7 @@
 }
 
 .post__image {
-  max-width: 1200px;
+  max-width: 100%;
   background-size: contain;
 }
 
@@ -39,28 +39,3 @@
   align-items: center;
   background-color: #123;
 }
-
-@media (max-width: 1199px) {
-  .post__image {
-    max-width: 768px;
-  }
-}
-
-@media (max-width: 767px) {
-  .post__image {
-    max-width: 425px;
-  }
-}
-
-@media (max-width: 479px) {
-  .post__image {
-    max-width: 320px;
-  }
-}
-
-@media (max-width: 320px) {
-  .post__image {
-    max-width: 240px;
-  }
-}
-

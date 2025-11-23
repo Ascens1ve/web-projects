@@ -46,10 +46,8 @@ export class AuthController {
             );
         if (this.authService.validateAdmin(token)) {
             try {
-                const updatedBrokers = await this.usersService.addOne(
-                    body as IUser,
-                );
-                return updatedBrokers;
+                await this.usersService.addOne(body as IUser);
+                return this.usersService.brokers;
             } catch {
                 throw new HttpException(
                     'Ошибка добавления брокера',
@@ -79,6 +77,6 @@ export class AuthController {
 
     @Get('/brokers/all')
     getAllBrokers() {
-        return this.usersService.getBrokers();
+        return this.usersService.brokers;
     }
 }

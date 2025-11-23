@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-export type AlertType = 'success' | 'failed' | 'normal';
+export type AlertType = 'success' | 'failed' | 'warn';
 export type AlertState = 'active' | 'hidden';
 
 export interface Alert {
@@ -16,11 +16,15 @@ const alertConfig = ref<Alert>({
 });
 
 export function useAlert() {
-  const updateAlert = (type: AlertType = 'normal', state: AlertState = 'active', text: string) => {
+  const updateAlert = (type: AlertType = 'warn', state: AlertState = 'active', text: string) => {
     alertConfig.value.type = type;
     alertConfig.value.state = state;
     alertConfig.value.text = text;
   };
 
-  return { alertConfig, updateAlert };
+  const clearAlert = () => {
+    alertConfig.value.state = 'hidden';
+  };
+
+  return { alertConfig, updateAlert, clearAlert };
 }

@@ -2,12 +2,13 @@ import { APP_INITIALIZER, ApplicationConfig, ErrorHandler, importProvidersFrom, 
 import { provideRouter, Router } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import * as Sentry from '@sentry/angular';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(BrowserAnimationsModule),
+    provideAnimations(),
+    //importProvidersFrom(BrowserAnimationsModule),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),

@@ -1,0 +1,61 @@
+[
+  {
+    "id": 0,
+    "nickname": "professor",
+    "name": "Mickey",
+    "surname": "Langedate",
+    "avatar": "/uploads/cat-lol.webp",
+    "about": "Something about me. Hello Meow!",
+    "birthday": "13.05.2004",
+    "email": "proffesor14@gmail.com",
+    "cover": "/uploads/catcity.webp",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [
+        24
+      ],
+      "outgoing": [],
+      "incoming": []
+    }
+  },
+  {
+    "id": 24,
+    "nickname": "qwerty123",
+    "name": "qwerty123",
+    "surname": "qwerty123",
+    "avatar": "uploads/avatars/Charming Gray Cat With Red Umbrella On Cobblestone Street-1756316609904-949183419.png",
+    "about": "",
+    "email": "i1214124@mail.ru",
+    "birthday": "2025-08-01",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [
+        0
+      ],
+      "outgoing": [],
+      "incoming": []
+    },
+    "password": "$2b$08$1seoZ.cz1fdQd1Iz9Nu1peV5U1/uIG0rzUB5CdZnzzKMuh9G6zPty"
+  },
+  {
+    "id": 25,
+    "nickname": "tester",
+    "name": "test",
+    "surname": "testov",
+    "avatar": null,
+    "about": null,
+    "email": "test@test.org",
+    "birthday": "2004-08-01",
+    "role": "member",
+    "status": "active",
+    "friends": {
+      "active": [],
+      "outgoing": [],
+      "incoming": []
+    },
+    "posts": [],
+    "password": "$2b$08$36cXLHtmk5moT3tgiOCSgeYe5L6mcOsx0Z2Y4kb3gOLB3piKLG2pO"
+  }
+]

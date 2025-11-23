@@ -4,37 +4,37 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { checkUserAuth } from '../store/userSlice';
 
 interface ProtectedRouteProps {
-    children: React.ReactNode;
-    onlyAuth?: boolean;
-    onlyUnAuth?: boolean;
+  children: React.ReactNode;
+  onlyAuth?: boolean;
+  onlyUnAuth?: boolean;
 }
 
 export const ProtectedRoute = ({
-    children,
-    onlyAuth,
-    onlyUnAuth,
+  children,
+  onlyAuth,
+  onlyUnAuth,
 }: ProtectedRouteProps) => {
-    const location = useLocation();
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.user.user);
-    const isAuthChecked = useSelector((state) => state.user.isAuthChecked);
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  const isAuthChecked = useSelector((state) => state.user.isAuthChecked);
 
-    useEffect(() => {
-        dispatch(checkUserAuth());
-    }, []);
+  useEffect(() => {
+    dispatch(checkUserAuth());
+  }, []);
 
-    if (!isAuthChecked) {
-        return <div>Загрузка...</div>;
-    }
+  if (!isAuthChecked) {
+    return <div>Загрузка...</div>;
+  }
 
-    if (onlyUnAuth && user) {
-        const from = location.state?.from || { pathname: '/' };
-        return <Navigate replace to={from} />;
-    }
+  if (onlyUnAuth && user) {
+    const from = location.state?.from || { pathname: '/' };
+    return <Navigate replace to={from} />;
+  }
 
-    if (onlyAuth && !user) {
-        return <Navigate replace to="/login" />;
-    }
+  if (onlyAuth && !user) {
+    return <Navigate replace to='/login' />;
+  }
 
-    return children;
+  return children;
 };

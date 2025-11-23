@@ -55,7 +55,7 @@ export class UsersService implements OnModuleInit {
         return this.users[id];
     }
 
-    getBrokers() {
+    get brokers() {
         return this.users.filter((user) => user.role === 'broker');
     }
 
@@ -74,6 +74,41 @@ export class UsersService implements OnModuleInit {
                 this.users = newUsers;
             } catch (error) {
                 console.error(`Ошибка добавления пользователя: ${error}`);
+            }
+        });
+    }
+
+    async updateOne(alias: string, data: Partial<IUser>) {
+        await this.fileQueue.push(async () => {
+            const index = this.users.findIndex((user) => user.alias === alias);
+            if (index === -1) {
+                throw new HttpException(
+                    `Пользователь ${alias} не найден`,
+                    HttpStatus.NOT_FOUND,
+                );
+            }
+            const newUsers = structuredClone(this.users);
+
+            newUsers[index] = {
+                ...newUsers[index],
+                ...data, // Используйте данные без alias
+            };
+
+            try {
+                const tmp = `${this.pathToFile}.${process.pid}.tmp`;
+                await fs.writeFile(
+                    tmp,
+                    JSON.stringify(newUsers, null, 2),
+                    'utf8',
+                );
+                await fs.rename(tmp, this.pathToFile);
+
+                this.users = newUsers;
+            } catch {
+                throw new HttpException(
+                    'Ошибка при записи файла',
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                );
             }
         });
     }

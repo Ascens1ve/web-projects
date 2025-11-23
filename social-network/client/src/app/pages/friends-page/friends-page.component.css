@@ -47,6 +47,22 @@
   width: 100px;
 }
 
+.friend__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.friend__button_red {
+  color: white;
+  background-color: #f44336;
+}
+
+.friend__button_green {
+  color: white;
+  background-color: #37ca30;
+}
+
 .categories {
   width: 100%;
   display: flex;

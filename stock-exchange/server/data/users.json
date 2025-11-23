@@ -36,7 +36,7 @@
     "alias": "1234",
     "password": "$2b$10$.WfC4j/lId6OahZGnjxMnurLpe60Y9cvHRmMy1S25Q/jbzzjoCexW",
     "role": "broker",
-    "baseMoney": 12
+    "baseMoney": 103
   },
   {
     "name": "joker",
@@ -68,6 +68,54 @@
     "alias": "maxim",
     "password": "$2b$10$4RS4zb59LTpt.L5blObZ.OCzh8PZMTHEBLyPx0kQeq5naSdiei4uu",
     "role": "broker",
-    "baseMoney": 15900
+    "baseMoney": 15891
+  },
+  {
+    "name": "flower",
+    "surname": "1234",
+    "alias": "flower",
+    "password": "$2b$10$MS5a0TNeoG5d2UBS.u0IMOH373fgxn6OTci/TMgMplxOXV58cd2X.",
+    "role": "broker",
+    "baseMoney": 123
+  },
+  {
+    "name": "flower_new",
+    "surname": "1234",
+    "alias": "flower_new",
+    "password": "$2b$10$Et/g8kLOCltPtUz1fpSOl.Ako2sO/fXckCp9z6YsrZK.QH9MYljd2",
+    "role": "broker",
+    "baseMoney": 1234
+  },
+  {
+    "name": "213213",
+    "surname": "32112",
+    "alias": "321123",
+    "password": "$2b$10$ImGHpago8RHicjmS5l8qwu4wUXYTTWbeMhv6YYIKqfBzigwCSFjhm",
+    "role": "broker",
+    "baseMoney": 321
+  },
+  {
+    "name": "324432",
+    "surname": "43234",
+    "alias": "324243432",
+    "password": "$2b$10$VLetBzBR5fQll0Q/go2hwOQmvf7B8e/BxaO2KdQk57hfVFBpVQRBa",
+    "role": "broker",
+    "baseMoney": 34322
+  },
+  {
+    "name": "432432",
+    "surname": "32423",
+    "alias": "423423",
+    "password": "$2b$10$EAj/wwPSmVptL13KPGOpWezOFQAiQfgCD4QYARTcOJUJ9buq8BhMu",
+    "role": "broker",
+    "baseMoney": 423243
+  },
+  {
+    "name": "42343",
+    "surname": "234234",
+    "alias": "32424323",
+    "password": "$2b$10$0U/cgZzL3MUclW15KiMUXeYsJ9vcNUYwxk5d3K8yfBq72sQHSuOh6",
+    "role": "broker",
+    "baseMoney": 322
   }
 ]

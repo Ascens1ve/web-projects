@@ -14,6 +14,22 @@ Chart.register(zoomPlugin);
 export function useChart(chartRef: Ref<HTMLCanvasElement | null>, points: Ref<Point[]>) {
   let chartInstance: Chart | null = null;
 
+  const getDataLimits = (data: Point[]) => {
+    if (data.length === 0) {
+      return { minX: 0, maxX: 1, minY: 0, maxY: 1 };
+    }
+
+    const xValues = data.map((p) => p.x);
+    const yValues = data.map((p) => p.y);
+
+    return {
+      minX: Math.min(...xValues),
+      maxX: Math.max(...xValues),
+      minY: Math.min(...yValues),
+      maxY: Math.max(...yValues),
+    };
+  };
+
   // Функция инициализации графика
   const initChart = () => {
     if (!chartRef.value) return;
@@ -26,6 +42,8 @@ export function useChart(chartRef: Ref<HTMLCanvasElement | null>, points: Ref<Po
 
     const ctx = chartRef.value.getContext('2d');
     if (!ctx) return;
+
+    const limits = getDataLimits(points.value);
 
     chartInstance = new Chart(ctx, {
       type: 'line',
@@ -48,6 +66,8 @@ export function useChart(chartRef: Ref<HTMLCanvasElement | null>, points: Ref<Po
         scales: {
           x: {
             type: 'time',
+            min: limits.minX,
+            max: limits.maxX,
             time: {
               unit: 'day',
               tooltipFormat: 'dd MMM yyyy',
@@ -58,6 +78,8 @@ export function useChart(chartRef: Ref<HTMLCanvasElement | null>, points: Ref<Po
             },
           },
           y: {
+            min: limits.minY,
+            max: limits.maxY,
             title: {
               display: true,
               text: 'Price ($)',
@@ -97,7 +119,19 @@ export function useChart(chartRef: Ref<HTMLCanvasElement | null>, points: Ref<Po
     points,
     (newPoints) => {
       if (chartInstance) {
+        const limits = getDataLimits(newPoints);
         chartInstance.data.datasets[0].data = newPoints;
+
+        // обновляем границы осей
+        if (chartInstance.options.scales) {
+          const xScale = chartInstance.options.scales.x;
+          const yScale = chartInstance.options.scales.y;
+          xScale!.min = limits.minX;
+          xScale!.max = limits.maxX;
+          yScale!.min = limits.minY;
+          yScale!.max = limits.maxY;
+        }
+
         chartInstance.update();
       }
     },

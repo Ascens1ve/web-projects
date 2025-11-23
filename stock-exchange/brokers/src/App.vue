@@ -8,7 +8,7 @@ const us = useUserStore();
 </script>
 
 <template>
-  <div id="app" class="main">
+  <div id="app" class="page">
     <NotifyModal />
     <HeaderComponent />
     <LoadingComponent v-if="us.isLoading" />
@@ -17,7 +17,7 @@ const us = useUserStore();
 </template>
 
 <style>
-.main {
+.page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,25 +27,25 @@ const us = useUserStore();
 }
 
 @media only screen and (min-width: 480px) {
-  .main {
+  .page {
     max-width: 480px;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .main {
+  .page {
     max-width: 768px;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  .main {
+  .page {
     max-width: 900px;
   }
 }
 
 @media only screen and (min-width: 1382px) {
-  .main {
+  .page {
     max-width: 1200px;
   }
 }

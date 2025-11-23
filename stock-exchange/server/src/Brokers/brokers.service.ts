@@ -80,6 +80,11 @@ export class BrokersService {
         else shares.set(share, 0);
     }
 
+    public clearShares() {
+        this.sharesBuyPrice = new Map<string, Map<StockSymbols, number>>();
+        this._brokerShares = new Map<string, Map<StockSymbols, number>>();
+    }
+
     public async saveResults() {
         const path = `${this.pathToFile}${new Date().toISOString().replaceAll(':', '-')}.json`;
         try {
@@ -87,6 +92,7 @@ export class BrokersService {
                 path,
                 JSON.stringify(mapToObject(this._brokerShares), null, 2),
             );
+            this.clearShares();
         } catch (error) {
             console.error(error);
         }

@@ -1,3 +1,4 @@
+import { HttpException } from '@nestjs/common';
 import {
     MessageBody,
     SubscribeMessage,
@@ -11,7 +12,7 @@ import { validate } from 'class-validator';
 import { Server, Socket } from 'socket.io';
 import { AuthService } from 'src/Auth/auth.service';
 import { BrokersService } from 'src/Brokers/brokers.service';
-import { tradesDataDto } from 'src/dto/many.dto';
+import { editBaseMoneyDto, tradesDataDto } from 'src/dto/many.dto';
 import { mapHasValue, mapToObject, parseDollar } from 'src/helper';
 import { BidState, IUser } from 'src/interfaces';
 import { StocksService } from 'src/Stocks/stocks.service';
@@ -49,14 +50,7 @@ export class EventsGateway implements OnGatewayConnection {
     }
 
     handleConnection(client: Socket) {
-        if (this._bidStatus === BidState.stop) {
-            client.emit('error', {
-                success: false,
-                message: 'Торги не начаты',
-            });
-            client.disconnect();
-            return;
-        }
+        console.log(client.handshake.query.page);
         const token = client.handshake.auth.token as string;
         if (client.handshake.query.page === '/imitation') {
             try {
@@ -85,6 +79,29 @@ export class EventsGateway implements OnGatewayConnection {
                 });
                 client.disconnect();
             }
+            return;
+        }
+        if (client.handshake.query.page === '/') {
+            try {
+                const admin = this.authService.validateAdmin(token);
+                if (admin) {
+                    client.emit('connected');
+                }
+            } catch {
+                client.emit('error', {
+                    success: false,
+                    message: 'Вы не являетесь администратором!',
+                });
+                client.disconnect();
+            }
+            return;
+        }
+        if (this._bidStatus === BidState.stop) {
+            client.emit('error', {
+                success: false,
+                message: 'Торги не начаты',
+            });
+            client.disconnect();
             return;
         }
         let user: Omit<IUser, 'password'>;
@@ -298,6 +315,19 @@ export class EventsGateway implements OnGatewayConnection {
             message: 'Акции успешно проданы!',
             action: { type: 'sell', amount: data.amount, price },
         };
+    }
+
+    @SubscribeMessage('edit-basemoney')
+    async handleEditBaseMoney(@MessageBody() data: editBaseMoneyDto) {
+        try {
+            await this.usersService.updateOne(data.alias, data);
+            return { success: true, message: 'Начальный баланс изменен!' };
+        } catch (error) {
+            return {
+                success: false,
+                message: (error as HttpException).message,
+            };
+        }
     }
 
     get BidStatus() {

@@ -3,7 +3,6 @@ import fs from 'fs';
 import jwt from 'jsonwebtoken';
 import DataWatcher from '../data.js';
 import path from 'path';
-import { request } from 'http';
 
 let io;
 const jwtSecret = fs.readFileSync(path.join(process.cwd(), '/sslcert/private.key'));
@@ -63,12 +62,12 @@ export function initSocket(server) {
         });
 
         socket.on('friend-add', async (friendID) => {
-            //console.log(`Event: friend-add, id: ${friendID}, my-id: ${socket.data.id}`);
+            console.log(`Event: friend-add, id: ${friendID}, my-id: ${socket.data.id}`);
             const userIndex = DataWatcher.users.findIndex(u => u.id === socket.data.id);
             const friendIndex = DataWatcher.users.findIndex(u => u.id === friendID);
-            //console.log(`UserIndex = ${userIndex}, FriendIndex = ${friendIndex}`);
+            console.log(`UserIndex = ${userIndex}, FriendIndex = ${friendIndex}`);
             if (userIndex === -1 || friendIndex === -1) {
-                //console.log('Not found');
+                console.log('Not found');
                 socket.emit('error', {
                     type: 'error', message: 'Ошибка при поиске пользователя'
                 });
@@ -80,7 +79,7 @@ export function initSocket(server) {
                 const updatedFriend = structuredClone(DataWatcher.users[friendIndex]);
 
                 if (!checkFriendsRelation(updatedUser, updatedFriend, 'unfamiliar')) {
-                    //console.log('Check relation');
+                    console.log('Check relation');
                     socket.emit('error', {
                         type: 'error', message: 'Неверный запрос'
                     });

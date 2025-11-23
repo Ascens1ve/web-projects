@@ -31,13 +31,16 @@ export function useSocketTrades() {
   }
 
   socket.on('connected', (body: IStartData) => {
+    console.log(body);
     stocksStore.balance = Number(body.initialBalance);
     speed.value = body.bidSpeed;
     stocksStore.setCurrentDate(body.currentDate);
     choosedCompanies.value = body.choosedCompanies;
     Object.entries(body.stocks).forEach(([sym, arr]) => {
+      console.log(sym, arr);
       stocks[sym as StockSymbols] = arr;
-      stocksStore.setPrice(sym as StockSymbols, parseDollar(arr[arr.length - 1].Open));
+      if (arr.length > 0)
+        stocksStore.setPrice(sym as StockSymbols, parseDollar(arr[arr.length - 1].Open));
     });
     let price;
     Object.entries(body.shares).forEach(([sym, amount]) => {
@@ -48,6 +51,7 @@ export function useSocketTrades() {
   });
 
   socket.on('update', (body: IUpdateData) => {
+    console.log(body);
     stocksStore.setCurrentDate(body.currentDate);
     choosedCompanies.value.forEach((sym: StockSymbols) => {
       const point = body.stocks[sym];

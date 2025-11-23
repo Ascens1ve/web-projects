@@ -57,7 +57,7 @@ const handleLogout = () => {
   text-decoration: none;
   color: black;
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 500;
   font-family: inherit;
   padding: 8px;
   border: none;

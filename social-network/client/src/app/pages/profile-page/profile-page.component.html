@@ -8,22 +8,21 @@
               alt="Аватар"
               class="profile__avatar"
             >
-            <h1 class="profile__text">{{profileInfo.name}} {{profileInfo.surname}}</h1>
+            <h1 class="profile__text">{{profileInfo.name}} {{profileInfo.surname}} | <strong>&#64;{{profileInfo.nickname}}</strong></h1>
           </div>
-          <h2 class="profile__text">&#64;{{profileInfo.nickname}}</h2>
           <p>{{profileInfo.about}}</p>
+          @if (userNickname === profileInfo.nickname) {
+            <div class="profile__buttons">
+              <button mat-flat-button color="primary" (click)="openDialogEditProfile()">Редактировать профиль</button>
+              <button mat-flat-button color="primary" (click)="openDialogCreatePost()">Написать пост</button>
+            </div>
+          }
+          @else {
+            <div class="profile__buttons">
+              <button>Добавить в друзья</button>
+            </div>
+          }
       </div>
-      @if (userNickname === profileInfo.nickname) {
-        <div class="profile__buttons">
-          <button mat-flat-button color="primary" (click)="openDialogEditProfile()">Редактировать профиль</button>
-          <button mat-flat-button color="primary" (click)="openDialogCreatePost()">Написать пост</button>
-        </div>
-      }
-      @else {
-        <div class="profile__functions">
-          <button>Добавить в друзья</button>
-        </div>
-      }
     </div>
     <div class="line"></div>
     <posts [postList]="postsSig()"></posts>

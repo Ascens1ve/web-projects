@@ -31,6 +31,7 @@ export const useStocksStore = defineStore('stocks', {
       } else {
         this.amountAndPrice.set(name, [data[0], value]);
       }
+      this.amountAndPrice = new Map(this.amountAndPrice);
     },
     getPrice(name: StockSymbols) {
       const data = this.amountAndPrice.get(name);
@@ -45,9 +46,10 @@ export const useStocksStore = defineStore('stocks', {
       }
       if (!data) {
         this.amountAndPrice.set(name, [amount, price]);
-        return;
+      } else {
+        this.amountAndPrice.set(name, [data[0] + type * amount, price]);
       }
-      this.amountAndPrice.set(name, [data[0] + type * amount, price]);
+      this.amountAndPrice = new Map(this.amountAndPrice);
     },
   },
   getters: {

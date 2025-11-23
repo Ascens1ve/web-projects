@@ -1,0 +1,5 @@
+{
+  "verbose": true,
+  "maxWorkers": 1,
+  "preset": "jest-puppeteer"
+}
